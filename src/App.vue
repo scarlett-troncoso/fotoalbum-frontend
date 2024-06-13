@@ -6,18 +6,21 @@ export default {
   data(){
     return{
       base_api_url: 'http://127.0.0.1:8000', //creo una variabile con il link(base) della mia API in questo caso del l'api creata nell file(laravel-boolpress-live-73)
-      photos_endpoint: '/api/photos', // creo variabile con il resto dell URL della api, 
-      photos: ''
+      photos_endpoint: '/api/photos', // URL api photos,
+      categories_endpoint: '/api/categories', // URL api categories,
+      photos: '',
+      categories: '',
+      filter_value: ''
     }
   },
 
   methods: {
     showPhoto(url){ //questo metodo ci porta al url
-      console.log(url); // controlliamo in console se quando facciamo click sulle pagine, ci manda al url di ogni pagina
-      this.callApi(url)
+      console.log(url); //click -> url di ogni pagina
+      this.callApiPhotos(url)
     },
 
-    callApi(url){
+    callApiPhotos(url){
       axios.get(url)
       .then(resp => {
       //console.log(resp); 
@@ -27,13 +30,41 @@ export default {
       .catch(err => {
       console.error(err);
         })
+    },
+
+    callApiCategories(url){
+      axios.get(url)
+      .then(resp => {
+      //console.log(resp); 
+      this.categories = resp.data
+      console.log(this.categories);
+        })
+      .catch(err => {
+      console.error(err);
+        })
+    },
+
+    filter(){
+      //console.log('FUNZIONA BUTTON');
+      // console.log(this.filter_value);
+      const url_filter = this.base_api_url + this.photos_endpoint + `?filter=${this.filter_value}`
+      console.log(url_filter); //http://127.0.0.1:8000/api/photos?filter=3
+      this.callApiPhotos(url_filter)
     }
   },
 
   mounted(){
-    const url = this.base_api_url + this.photos_endpoint
-    console.log(url);
-    this.callApi(url)
+    // url photos
+    const url_photos = this.base_api_url + this.photos_endpoint
+    console.log(url_photos);
+
+    // url categories
+    const url_categories = this.base_api_url + this.categories_endpoint
+    console.log(url_categories);
+
+    // calls api
+    this.callApiPhotos(url_photos); // chiamata api photos
+    this.callApiCategories(url_categories)
   }
   
   }
@@ -42,10 +73,22 @@ export default {
 <template>
   <h1>Photos</h1>  
 
+<section class="filters py-5">
+  <div class="input-group">
+    <select class="form-select" name="filter_category" id="filter_category" v-model="filter_value"> <!--id="inputGroupSelect04" aria-label="Example select with button addon"--->
+      <option value="" selected disabled>Filtra Per...</option>
+      <option :value="category.id" v-for="category in categories" > {{category.name}} </option>
+    </select>
+    <button class="btn btn-outline-secondary" type="button" @click="filter()">
+      Filtra
+    </button>
+  </div>
+</section>
+  
+
 <section class="photos py-5" v-if="photos">
 
   <div class="container">
-
     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
       <div class="col" v-for="photo in photos.data">
         <div class="card">
@@ -59,13 +102,21 @@ export default {
           </div>
           
           <div class="card-body">
-            {{ photo.title }}
+            <h5>{{ photo.title }}</h5>
+          </div>
+
+          <div class="card-body">
+            Categoria: {{ photo.category ? photo.category.name : 'Uncategorized' }}
+          </div>
+
+          <div class="card-body">
+            <i class="fa-solid fa-user"></i> {{ photo.user.name }}
           </div>
 
           <div class="card-footer"> <!---Modal per visualizzazione di un singola photo-->
             <!-- Modal trigger button -->
             <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" :data-bs-target="`#post-${photo.id}`">
-              Vedi
+              <i class="fa-solid fa-eye"></i> <!--Vedi Foto-->
             </button>
             
             <!-- Modal Body -->
