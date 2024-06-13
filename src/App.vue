@@ -15,7 +15,7 @@ export default {
   },
 
   methods: {
-    showPhoto(url){ //questo metodo ci porta al url
+    goPage(url){ //questo metodo ci porta al url
       console.log(url); //click -> url di ogni pagina
       this.callApiPhotos(url)
     },
@@ -110,7 +110,7 @@ export default {
           </div>
 
           <div class="card-body">
-            <i class="fa-solid fa-user"></i> {{ photo.user.name }}
+            <i class="fa-solid fa-user"></i> {{ photo.user? photo.user.name : '' }}
           </div>
 
           <div class="card-footer"> <!---Modal per visualizzazione di un singola photo-->
@@ -165,7 +165,7 @@ export default {
     <nav aria-label="Page navigation" class="mt-4">
       <ul class="pagination">
         <li class="page-item" :class="{'disabled' : !link.url, 'active': link.active}" v-for="link in photos.links">
-          <button class="page-link" :href="link.url" type="button" @click="showPhoto(link.url)"> <!--ci manda al url di ogni pagina-->
+          <button class="page-link" :href="link.url" type="button" @click="goPage(link.url)"> <!--ci manda al url di ogni pagina-->
             <span v-html="link.label"></span>
           </button>
         </li>
