@@ -5,7 +5,7 @@ export default {
 </script>
 
 <template>
-    <header>
+    <header class="side-header">
         <nav class="navbar navbar-expand-lg bg-body-tertiary">
             <div class="container-fluid m-2">
                 <div class="mx-3">
@@ -46,3 +46,9 @@ export default {
         </nav>
     </header>
 </template>
+
+<style scoped>
+.side-header{
+    background-color: rgb(31, 31, 31);
+}
+</style>
