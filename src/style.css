@@ -4,62 +4,124 @@
     box-sizing: border-box;
 }
 
-.side-header{
-    background-color: rgb(31, 31, 31);
-}
-i.fa-circle-check {
-    color: rgb(46, 250, 46);
-}
-
-.evidence {
-    padding-bottom: 5px;
-}
-
-.symbol_check{
-    line-height: 0.5rem;
-}
-
-.ev_text {
-    font-size: small;
-    margin-left: 0.5rem;
-    line-height: 0.5rem;
-}
-
 .categ {
     font-size: smaller;
     margin-bottom: 0;
 }
 
-.cont-img{
-        transition: 1.5s; /* Animation transform .*/
-        
-}
-
-.btn-modal{
-    position: absolute;
-    top: 0;
-    right: 0;
-}
-.btn-modal:hover{
-    transform: scale(1.2);
-    transition: 0.5s;
-}
-.cont-img:hover{
-    transform: scale(1.05);
-}
-
-.info-card {
-    line-height: 0.5rem;
+body {
+    background-color: rgb(42, 39, 39);
     position: relative;
 }
 
-.card-foto-body {
-    padding: 1px 2px 2px 4px ;
+.container {
+    max-width: 1176px;
+    margin: auto;
 }
 
-.cont-cards {
-    display: grid;
-    grid-column-gap: 24px; /*var(--column-gutter)*/
-    align-items: start;
-    grid-template-columns: repeat(2, minmax(0, 1fr)); /* repeat(var(--columns), minmax(0, 1fr)) */
+.row {
+    display: flex;
+    flex-wrap: wrap;
 }
+
+.col-12 {
+    width: 100%;
+}
+
+/*[class^="col-"] {
+    padding: 10px;
+}*/
+
+
+/* SM */
+@media screen and (min-width: 568px) {
+    /*.col-sm-6 {
+      width: 50%;
+    }
+
+    /*.contFilm{
+        font-size: 13px;
+        line-height: 1.5rem;
+    }
+
+    .overview {
+        line-height: 1rem;
+    }*/
+  }
+
+@media screen and (min-width: 668px) {
+    /*.contFilm{
+        font-size: 16px;
+        line-height: 1.75rem;
+    }
+
+    .overview {
+        line-height: 1.25rem;
+    }*/
+  }
+  
+@media screen and (min-width: 768px) {
+    /*.col-md-4 {
+        width: calc(100% / 12* 4);
+    }
+
+    /*.contFilm{
+        font-size: 13px;
+        line-height: 1rem;
+    }
+
+    .overview {
+        line-height: 1rem;
+    }*/
+}
+
+@media screen and (min-width: 880px) {
+    /*.contFilm{
+        font-size: 14px;
+        line-height: 1.5rem;
+    }
+
+    /*.overview {
+        line-height: 1.15rem;
+    }*/
+}
+
+@media screen and (min-width: 1024px) {
+    /*.col-lg-3 {
+        width: calc(100% / 12* 3);
+    }
+
+    /*.contFilm{
+        font-size: small;
+    }
+
+    .overview {
+        line-height: 1rem;
+    }*/
+}
+
+@media screen and (min-width: 1200px) {
+    
+    /*.contFilm{
+        font-size: 15px;
+    }
+    
+    .overview {
+        line-height: 1.25rem;
+    }*/
+}
+
+@media screen and (min-width: 1440px) {
+    /*.col-xxl-3 {
+        width: calc(100% / 12* 3);
+    }
+
+    .contFilm{
+        font-size: medium;
+    }
+
+    .overview {
+       line-height: 1.5rem;
+    }*/
+}
+
