@@ -6,7 +6,7 @@ export default {
 
 <template>
     <header class="side-header">
-        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <nav class="navbar navbar-expand-lg navbar-header"> <!--bg-dark  bg-body-tertiary--->
             <div class="container-fluid m-2">
                 <div class="mx-3">
                     <h2>FotoAlbum</h2>
@@ -48,7 +48,7 @@ export default {
 </template>
 
 <style scoped>
-.side-header{
-    background-color: rgb(31, 31, 31);
-}
+    .navbar-header{
+        background-color: transparent;
+    }
 </style>
