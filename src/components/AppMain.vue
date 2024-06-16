@@ -1,12 +1,12 @@
 <script>
 import axios from 'axios';
-//import ModalView from './components/ModalView.vue';
+import ModalView from './ModalView.vue';
 
 export default {
   name: 'AppMain.vue',
 
   components: {
-    //ModalView,
+    ModalView,
   },
 
   data(){
@@ -14,10 +14,12 @@ export default {
       base_api_url: 'http://127.0.0.1:8000', //creo una variabile con il link(base) della mia API in questo caso del l'api creata nell file(laravel-boolpress-live-73)
       photos_endpoint: '/api/photos', // URL api photos,
       categories_endpoint: '/api/categories', // URL api categories,
+      evidences_query: '?in_evidence=',
       photos: '',
       categories: '',
       filter_value: '',
-      evidences: ''
+      evidences: '',
+      show: false
     }
   },
 
@@ -72,12 +74,11 @@ export default {
       this.callApiPhotos(url_filter)
     },
 
-    in_evidence(){
-        const ev = this.photos;
-        console.log(ev);
+    in_evidence_filter(){
+        const url_evidences_filter = this.base_api_url + this.photos_endpoint + this.evidences_query
+        console.log(url_evidences_filter);
+        this.callApiPhotos(url_evidences_filter)
     }
-
-
   },
 
   mounted(){
@@ -89,7 +90,8 @@ export default {
     const url_categories = this.base_api_url + this.categories_endpoint
     console.log(url_categories);
 
-    const url_evidences = this.base_api_url + this.photos_endpoint + `?in_evidence=` // `?in_evidence=in_evidence`
+    // query in_evidence
+    const url_evidences = this.base_api_url + this.photos_endpoint + this.evidences_query // `?in_evidence=in_evidence`
     console.log(url_evidences);
 
     // calls api
@@ -115,22 +117,18 @@ export default {
 
     <section class="filters py-5">
         <div class="input-group">
-            <button class="btn btn-outline-secondary" type="button" @click="in_evidence()">
+            <button class="btn btn-outline-secondary" type="button" @click="show = true" >
                 Sólo in evidenza
             </button>
         </div>
-
-        <div v-for="foto in photos.data">
-            <ul v-if="foto.in_evidence"> 
-                <li>{{ foto.title }}</li>
-            </ul>
+        <div v-if="show">
+            <div v-for="foto in evidences">
+                <ul> 
+                    <li>{{ foto.title }}</li>
+                </ul>
+            </div>
         </div>
-
-        <!--<div > Foto in evidenza:
-            <ul v-for="foto in evidences" class="bg-primary">
-                <li>{{ foto.title }}</li>
-            </ul>
-        </div>-->
+        
     </section>
 
     <section class="photos py-5" v-if="photos">
@@ -175,53 +173,7 @@ export default {
                             </div>
                             
 
-                            <div class=""> <!---Modal per visualizzazione di un singola photo-->
-                                <!--<ModalView :photo="photo" v-for="photo in photos.data"></ModalView>-->
-                                <!-- Modal Body -->
-                                <!-- if you want to close by clicking outside the modal, delete the last endpoint:data-bs-backdrop and data-bs-keyboard -->
-                                <div class="modal fade" :id="`photo-${photo.id}`" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" role="dialog" :aria-labelledby="`modal-title-${photo.id}`" aria-hidden="true">
-                                    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-xl" role="document">
-                                        <div class="modal-content">
-
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" :id="`modal-title-${photo.id}`">
-                                                    {{photo.title}}
-                                                </h5>
-
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                            </div>
-
-                                            <div class="modal-body d-flex">
-                                                <div>
-                                                    <div v-if="photo.upload_image"> <!--Se la immagine ce allora-->
-                                                    <img class="img-fluid w-100" :src="photo.upload_image.startsWith('https://') ? photo.upload_image : base_api_url + '/storage/' + photo.upload_image" alt="">
-                                                    </div>
-
-                                                    <div v-else> <!--Se la immagine NON ce allora mi fa vedere un'immagine di Lorem Picsum-->
-                                                    <img src="https://picsum.photos/400/200" alt="" >
-                                                    </div>
-                                                </div>
-                            
-                                                <div>
-                                                    <p>{{photo.description}}</p>
-                                            
-                                                    <div>
-                                                        Categoria: {{ photo.category ? photo.category.name : 'Senza Categoria' }}
-                                                    </div>
-
-                                                    <div class="in_evidence" v-if="photo.in_evidence">
-                                                        <i class="fa-solid fa-circle-check"></i> Foto in evidenza
-                                                    </div>
-
-                                                    <div>
-                                                        <i class="fa-solid fa-user"></i> <span> {{ photo.user? photo.user.name : '' }} </span>  
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            <ModalView :photo="photo" :base_api_url="base_api_url"></ModalView>
                         </div>
                     </div>
                 </div>
