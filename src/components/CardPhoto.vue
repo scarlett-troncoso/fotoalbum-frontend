@@ -27,7 +27,10 @@ export default {
             <div class="info-card">
                 <h5 :class="photo.title.length > 35 ? 'photo-title' : ' '">{{ photo.title }}</h5>
                 <div class="d-flex justify-content-between">
-                    <span class="badge text-bg-secondary">{{ photo.category ? photo.category.name : 'Senza Categoria' }}</span>
+                    <div>
+                        <span class="badge text-bg-secondary" v-if="photo.category">{{ photo.category.name}}</span>
+                    </div>
+                    
                     <div class="evidence d-flex align-items-end" v-if="photo.in_evidence">
                         <i class="fa-solid fa-circle-check symbol_check"></i>
                         <span class="ev_text">In evidenza</span> 
@@ -76,7 +79,7 @@ i.fa-circle-check {
 }
 
 .photo-title{
-    width: 90%;
+    width: 80%;
     font-size: smaller;
 }
 

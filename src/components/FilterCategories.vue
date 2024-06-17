@@ -11,7 +11,7 @@ export default {
     data() {
         return{
             filter_value: '',
-            show: true
+            results_categories: true
         }
     }
 }
@@ -21,9 +21,11 @@ export default {
     <div class="input-group"> <!--   @keyup.enter="filter()"-->
         <select class="form-select-sm select-filtra form-select-dark" name="filter_category" id="filter_category"  v-model="filter_value">
             <option value="" selected disabled>Categorie...</option>
+            <option value="all">Tutte le categorie</option>
             <option v-for="category in categories" :value="category.id" > {{category.name}} {{ category.id }} </option> <!-- -->
+            <option value="senza">Senza Categoria</option>
         </select>
-        <button class="btn btn-outline-secondary btn-filtra-select" type="button" @click="$emit('filter', [filter_value, show])" :disabled="loading"> 
+        <button class="btn btn-outline-secondary btn-filtra-select" type="button" @click="$emit('filter', [filter_value, results_categories])" :disabled="loading"> 
             {{ loading ? 'Cercando...' : 'Filtra' }}
         </button>
     </div>
