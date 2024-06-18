@@ -5,22 +5,25 @@ import { store } from '../store';
 import CardPhoto from './CardPhoto.vue';
 import FiltersButtons from './FiltersButtons.vue';
 import LoadingIcon from './LoadingIcon.vue';
+import AppHeader from './AppHeader.vue';
 
 export default {
   name: 'AppMain.vue',
-  //emits: ['filter','handleTrue', 'allphotos'],
+  //emits: ['search'], //'handleTrue', 'allphotos'
 
   components: {
    // ModalView,
     CardPhoto,
     //FilterCategories,
     FiltersButtons,
-    LoadingIcon
+    LoadingIcon,
+    AppHeader
   },
 
   data(){
     return{
-        store
+        store,
+        //search_tx: ''
       /*base_api_url: 'http://127.0.0.1:8000', //creo una variabile con il link(base) della mia API in questo caso del l'api creata nell file(laravel-boolpress-live-73)
       photos_endpoint: '/api/photos', // URL api photos,
       categories_endpoint: '/api/categories', // URL api categories,
@@ -118,6 +121,8 @@ export default {
         this.show = false,
         this.results_categories = false
     }*/
+
+    
   },
 
   created(){
@@ -137,6 +142,7 @@ export default {
     store.callApiPhotos(url_photos); // chiamata api photos
     store.callApiCategories(url_categories)
     store.callApiEvidences(url_evidences)
+    
     }
     
   }
@@ -186,8 +192,9 @@ export default {
 
                 <div class="container" v-if="store.photos, !store.show">
 
-                    <h3 class="m-auto">Foto:</h3> <!-- {{ this.filter ? 'Foto:categoria Nome' : 'Explora tutte le foto' }} -->
 
+                    <h3 class="m-auto">Foto:</h3> <!-- {{ this.filter ? 'Foto:categoria Nome' : 'Explora tutte le foto' }} -->
+                    <!--<AppHeader @search="search"></AppHeader>--->
                     <div class="message" v-if="store.photos.data <= 0"> 
                         Non ci sono foto da vedere
                     </div>
@@ -228,7 +235,7 @@ main {
     height: 650px;
     background-size: cover;
     background-repeat: no-repeat;
-    margin-top: -180px;
+    /*margin-top: -180px;*/
 }
 
 </style>

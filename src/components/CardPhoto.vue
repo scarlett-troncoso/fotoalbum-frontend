@@ -12,7 +12,8 @@ export default {
 }
 </script>
 <template>
-    <div class="col card cards-photos">
+    <div class="card cards-photos"> <!--col -->
+        
         <div class="cont-img " type="button" data-bs-toggle="modal" :data-bs-target="`#photo-${photo.id}`">
             <div v-if="photo.upload_image"> <!--Se la immagine ce allora-->
                 <img class="card-img-top" :src="photo.upload_image.startsWith('https://') ? photo.upload_image : base_api_url + '/storage/' + photo.upload_image" alt="">
@@ -25,16 +26,13 @@ export default {
 
         <div class="card-body card-foto-body">
             <div class="info-card">
-                <h5 :class="photo.title.length > 35 ? 'photo-title' : ' '">{{ photo.title }}</h5>
+                <h5 class="photo-title" v-if="photo.title.length<=34">{{ photo.title }}</h5>
+                <h5 class="photo-title" v-else="photo.title.length>34">{{ photo.title.substring(0, 35) + "..." }}</h5>
                 <div class="d-flex justify-content-between">
                     <div>
                         <span class="badge text-bg-secondary" v-if="photo.category">{{ photo.category.name}}</span>
                     </div>
-                    
-                    <div class="evidence d-flex align-items-end" v-if="photo.in_evidence">
-                        <i class="fa-solid fa-circle-check symbol_check"></i>
-                        <span class="ev_text">In evidenza</span> 
-                    </div>
+
                     <div class="btn-modal">
                         <!-- Modal trigger button -->
                         <button type="button" class="btn btn-sm" data-bs-toggle="modal" :data-bs-target="`#photo-${photo.id}`">
@@ -44,13 +42,20 @@ export default {
                 </div>
             </div>
         </div>
+        <div class="evidence d-flex align-items-end" v-if="photo.in_evidence">
+            <i class="fa-solid fa-circle-check symbol_check orange"></i>
+            <span class="ev_text">In evidenza</span> 
+        </div>
     </div>
     <ModalView :photo="photo" :base_api_url="base_api_url"></ModalView>
 </template>
 
 <style scoped>
 .evidence {
-    padding-bottom: 5px;
+    /*padding-bottom: 5px;*/
+    position: absolute;
+    right: 5px;
+    bottom: 5px;
 
     >.ev_text {
     font-size: small;
@@ -64,6 +69,8 @@ export default {
 }
 
 .cards-photos{
+    /*height: 323px; in breack-points*/
+    position: relative;
 
     >.card-foto-body {
         padding: 1px 2px 2px 4px ;
@@ -74,13 +81,10 @@ export default {
     }
 }
 
-i.fa-circle-check {
-    color: rgb(46, 250, 46);
-}
-
 .photo-title{
-    width: 80%;
-    font-size: smaller;
+    width: 85%;
+    /*font-size: medium;
+    line-height: 1rem; in breack-points*/
 }
 
 .cont-img{
@@ -88,20 +92,22 @@ i.fa-circle-check {
     background-color: white;*/
     transition: all 1s;   
     width: 100%;
+    max-height: 100%;
     /*aspect-ratio: 7.0;*/
+    aspect-ratio: 4/3;
 
     &:hover{
         /*transform: scale(1.05);*/
-        filter: drop-shadow(0 0 15px #507183);
-        scale: 1.01;
+        filter: drop-shadow(0 0 10px #2f3c2f);
+        scale: 1.03;
     }
 }
 
 img{
     width: 100%;
-    height: 100%;
-    /*object-fit: contain;
-    aspect-ratio: 7.0;*/
+    max-height: 100%;
+    object-fit: cover;
+    aspect-ratio: 4/3;
     }
 
 .btn-modal{

@@ -4,6 +4,29 @@
     box-sizing: border-box;
 }
 
+:root {
+    --check-color: rgb(210, 123, 47);
+    --text-green: rgb(32, 67, 16);
+    --primary-green: #4a5a4f;
+    --secondary-grey: #2b2f2c;
+  }
+
+.orange {
+    color: var(--check-color);
+}
+
+.green {
+    color: var(--text-green)
+}
+
+.sec-grey {
+    color: var(--secondary-grey)
+}
+
+.prim-green {
+    color: var(--primary-green)
+}
+
 .categ {
     font-size: smaller;
     margin-bottom: 0;
@@ -35,93 +58,92 @@ body {
 
 /* SM */
 @media screen and (min-width: 568px) {
-    /*.col-sm-6 {
-      width: 50%;
+    
+    .cards-photos{
+        height: 450px;
+        width: 100%;
     }
-
-    /*.contFilm{
-        font-size: 13px;
+    .photo-title{
+        width: 85%;
+        font-size: large;
         line-height: 1.5rem;
     }
 
-    .overview {
-        line-height: 1rem;
-    }*/
-  }
-
-@media screen and (min-width: 668px) {
-    /*.contFilm{
-        font-size: 16px;
-        line-height: 1.75rem;
+    .jumbotron {
+        margin-top: -220px;
     }
 
-    .overview {
-        line-height: 1.25rem;
-    }*/
+    .cerca {
+        width: 50%;
+    }
+    .tre-filtri{
+        display: block;
+    }
+
+  }
+
+@media screen and (min-width: 576px) {
+
+    .cards-photos{
+        height: 280px;
+        width: 100%;
+    }
+    .photo-title{
+        width: 85%;
+        font-size: medium;
+        line-height: 1rem;
+    }
+    .tre-filtri{
+        display: flex;
+        justify-content: space-between;
+    }
+}
+
+@media screen and (min-width: 668px) {
+    .cards-photos{
+        height: 323px;
+    }
+    
   }
   
 @media screen and (min-width: 768px) {
-    /*.col-md-4 {
-        width: calc(100% / 12* 4);
-    }
+    .cards-photos{
+        height: 245px;}
 
-    /*.contFilm{
-        font-size: 13px;
-        line-height: 1rem;
+    .photo-title{
+        width: 85%;
+        font-size: medium;
+        line-height: 1.2rem;
     }
-
-    .overview {
-        line-height: 1rem;
-    }*/
 }
 
 @media screen and (min-width: 880px) {
-    /*.contFilm{
-        font-size: 14px;
-        line-height: 1.5rem;
+    .cards-photos{
+        height: 280px;
     }
 
-    /*.overview {
-        line-height: 1.15rem;
-    }*/
+    
 }
 
 @media screen and (min-width: 1024px) {
-    /*.col-lg-3 {
-        width: calc(100% / 12* 3);
+    .cards-photos{
+        height: 323px;
     }
-
-    /*.contFilm{
-        font-size: small;
-    }
-
-    .overview {
+    .photo-title{
         line-height: 1rem;
-    }*/
+    }
+    .jumbotron {
+        margin-top: -180px;
+    }
 }
 
 @media screen and (min-width: 1200px) {
-    
-    /*.contFilm{
-        font-size: 15px;
-    }
-    
-    .overview {
-        line-height: 1.25rem;
-    }*/
+    .cards-photos{
+        height: 323px;}
 }
 
 @media screen and (min-width: 1440px) {
-    /*.col-xxl-3 {
-        width: calc(100% / 12* 3);
-    }
-
-    .contFilm{
-        font-size: medium;
-    }
-
-    .overview {
-       line-height: 1.5rem;
-    }*/
+    .cards-photos{
+        height: 330px;}
 }
 

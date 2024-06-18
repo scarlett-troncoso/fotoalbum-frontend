@@ -20,6 +20,7 @@ export const store = reactive({
         photos: '',
         categories: '',
         evidences: '',
+        search_results: '',
         results_evidences: false,
         results_categories: false,
         show: false,
@@ -38,7 +39,7 @@ export const store = reactive({
         axios.get(url)
         .then(resp => {
           this.loading = false;
-          //console.log(resp); 
+          console.log(resp); 
           this.photos = resp.data.results
         console.log(this.photos); //direttamente { >data {oggeti del'api}}
           })
@@ -72,6 +73,35 @@ export const store = reactive({
         console.error(err);
           })
       },
+
+      callApiSearch(url){
+        axios.get(url)
+        .then(resp => {
+          this.loading = false;
+          
+        //console.log(resp); 
+        this.searchResults = resp.data.results
+        console.log(this.searchResults); //direttamente { >data {oggeti del'api}}
+          })
+        .catch(err => {
+        console.error(err);
+          })
+      },
+
+      /*
+      callApiPhotos(url){
+        axios.get(url)
+        .then(resp => {
+          this.loading = false;
+          console.log(resp); 
+          this.search_results = resp.data.results
+        console.log(this.photos); //direttamente { >data {oggeti del'api}}
+          })
+        .catch(err => {
+        console.error(err);
+          })
+      },*/
+  
   
       /*
       allPhotos(){
