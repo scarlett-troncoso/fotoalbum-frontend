@@ -79,8 +79,4 @@ export default {
     .input-cerca {
         background-color: transparent;
     }
-
-    .btn-cerca{
-        
-    }
 </style>

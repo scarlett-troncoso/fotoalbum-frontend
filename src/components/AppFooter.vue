@@ -6,5 +6,15 @@ export default {
 </script>
 
 <template>
-    <p>Footer</p>
+    <footer>
+        <span></span>
+    </footer>
+    
 </template>
+
+<style scoped>
+footer{
+    background-color: var(--green-dark);
+    margin: 0;
+}
+</style>

@@ -119,7 +119,7 @@ main {
 }
 
 .jumbotron {
-    background-image: url('/public/img/backgroung-530kb-trans.png');
+    background-image: url('/img/backgroung-530kb-trans.png');
     height: 1000px;
     background-size: cover;
     background-repeat: no-repeat;
