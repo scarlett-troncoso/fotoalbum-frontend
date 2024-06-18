@@ -71,8 +71,7 @@ export default {
     padding-left: 1rem;
 }
 .img-modal{
-    /*min-width: 100%;*/
-    width: 100%;
     max-width: 100%;
+    max-height: 70vh;
 }
 </style>
