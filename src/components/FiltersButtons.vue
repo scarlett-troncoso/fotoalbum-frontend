@@ -46,15 +46,6 @@ import FilterCategories from './FilterCategories.vue';
             console.log(url_filter); //http://127.0.0.1:8000/api/photos?filter=3
             store.callApiPhotos(url_filter)
         },
-
-        /*search(){ //(data)
-            store.loading = true;
-            //console.log('search_text', data);
-            //const [search_text] = data;
-            const url_search = store.base_api_url + store.photos_endpoint + `?search=${this.search_text}`
-            console.log(url_search); // console: http://127.0.0.1:8000/api/posts?search=sfrefe 
-            store.callApiPhotos(url_search)
-        },*/
     }
     
 }
@@ -63,17 +54,17 @@ import FilterCategories from './FilterCategories.vue';
 <template>
     <div class="tre-filtri"> <!--d-flex justify-content-between -->
 
-        <div class="input-group filter-evidence" >
-            <button class="btn btn-outline-secondary" type="button" v-if="!store.show" @click="handleTrue" :disabled="store.loading"> <!--@click="filterDoppio"-->
+        <div class="input-group filter-evidence " >
+            <button class="btn btn-outline-secondary text-dark btn-ev" type="button" v-if="!store.show" @click="handleTrue" :disabled="store.loading"> <!--@click="filterDoppio"-->
                 {{ store.loading ? 'Cercando...' : 'Vedi le foto in evidenza' }}
             </button>
-            <button class="btn btn-outline-secondary" type="button" v-if="store.show" @click="allphotos, store.show = false, store.results_evidences = false" :disabled="store.loading"> <!---->
+            <button class="btn btn-outline-light light" type="button" v-if="store.show" @click="allphotos, store.show = false, store.results_evidences = false" :disabled="store.loading"> <!---->
                 {{ store.loading ? 'Cercando...' : 'Torna indietro' }}
             </button>
         </div>
 
         <div class="link-all-photos align-content-center" v-if="store.show, store.results_categories, !store.results_evidences">
-            <a href="#" @click="allPhotos" class="link-dark link-opacity-25-hover link-underline-opacity-0 link-underline-opacity-25-hover">Tutte le Foto:</a>
+            <a href="#" @click="allPhotos" class="link-light link-all link-opacity-25-hover link-underline-opacity-0 link-underline-opacity-25-hover">Tutte le Foto:</a>
         </div>
 
         <div class="filter-categories" v-if="!store.results_evidences">
@@ -86,6 +77,10 @@ import FilterCategories from './FilterCategories.vue';
 
     .filter-evidence{
         width: auto;
+        >.btn-ev{
+            background-color: var(--ligth-prim);
+            opacity: 60%;
+        }      
     }
 
 </style>

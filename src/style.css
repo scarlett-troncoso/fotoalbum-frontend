@@ -5,11 +5,20 @@
 }
 
 :root {
-    --check-color: rgb(210, 123, 47);
-    --text-green: rgb(32, 67, 16);
-    --primary-green: #4a5a4f;
-    --secondary-grey: #2b2f2c;
+    --ligth-prim: #bfd6d8;
+    --ligth-sec: #a4a9ae;
+    --secondary-grey: #889697;
+    --secondary-green: #8faaac;
+    --check-color: #b06a41;
+    --salmon: #ffac86;
+    --primary-green: #5d7c81;
+    --green-dark: #3a5054;
+    --dark-dark: #424241;
   }
+
+.light-prim{
+    color: var(--ligth-prim);
+}
 
 .orange {
     color: var(--check-color);

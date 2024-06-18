@@ -12,10 +12,10 @@ export default {
     <div class=""> <!---Modal per visualizzazione di un singola photo-->
         <!-- Modal Body -->
         <div class="modal fade" :id="`photo-${photo.id}`" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" role="dialog" :aria-labelledby="`modal-title-${photo.id}`" aria-hidden="true">
-            <div class="modal-dialog modal-xl modal-dialog-scrollable" > <!--modal-dialog-centered  role="document"   -->
+            <div class="modal-dialog modal-xl modal-dialog-scrollable modal-show" > <!--modal-dialog-centered  role="document"   -->
                 <div class="modal-content">
                     <div class="modal-header mod-header">
-                        <h3 class="modal-title w-75 green" :id="`modal-title-${photo.id}`">
+                        <h3 class="modal-title w-75" :id="`modal-title-${photo.id}`">
                             {{photo.title}}
                         </h3>
 
@@ -23,7 +23,7 @@ export default {
                     </div>
 
                     <div class="modal-body d-flex justify-content-around mod-body">
-                        <div class="w-50"> <!--bg-dark-->
+                        <div class="w-50 cont-img-modal"> <!--bg-dark-->
                             <div v-if="photo.upload_image"> <!--Se la immagine ce allora-->
                                 <img class="img-modal" :src="photo.upload_image.startsWith('https://') ? photo.upload_image : base_api_url + '/storage/' + photo.upload_image" alt="">
                             </div>
@@ -36,7 +36,7 @@ export default {
                         <div class="w-50 modal-tex">
                             <h5 class="py-1">{{ photo.title }}</h5>
 
-                            <div class="green py-1">
+                            <div class="py-1 text-category">
                                 <strong>Categoria: {{ photo.category ? photo.category.name : 'Senza Categoria' }}</strong>
                             </div>
 
@@ -61,17 +61,32 @@ export default {
 </template>
 
 <style scoped>
+.modal-show{
+    min-width: 90vw;
+    height: 95vh;
+}
 .mod-header{
-    background-color: rgb(86, 101, 89);
+    background-color: var(--primary-green);
+    color: var(--ligth-prim);
 }
 .mod-body{
-    background-color: rgb(181, 185, 182);
+    background-color: var(ligth-prim);
 }
 .modal-tex{
     padding-left: 1rem;
+
+    >.text-category {
+        color: var(--primary-green);
+    }
 }
+
+.cont-img-modal{
+    display: inline-flex;
+    justify-content: center;
+}
+
 .img-modal{
     max-width: 100%;
-    max-height: 70vh;
+    max-height: 80vh;
 }
 </style>
