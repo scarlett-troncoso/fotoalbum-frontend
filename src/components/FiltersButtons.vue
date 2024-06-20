@@ -20,7 +20,6 @@ import FilterCategories from './FilterCategories.vue';
     data() {
         return{
             store,
-            //search_text: ''
         }
     },
 
@@ -45,14 +44,13 @@ import FilterCategories from './FilterCategories.vue';
             const url_filter = store.base_api_url + store.photos_endpoint + `?filter=${filter_value}`
             console.log(url_filter); //http://127.0.0.1:8000/api/photos?filter=3
             store.callApiPhotos(url_filter)
-        },
+        }
     }
-    
 }
 </script>
 
 <template>
-    <div class="tre-filtri"> <!--d-flex justify-content-between -->
+    <div class="tre-filtri">
 
         <div class="input-group filter-evidence " >
             <button class="btn btn-outline-secondary text-dark btn-ev" type="button" v-if="!store.show" @click="handleTrue" :disabled="store.loading"> <!--@click="filterDoppio"-->
@@ -80,7 +78,11 @@ import FilterCategories from './FilterCategories.vue';
         >.btn-ev{
             background-color: var(--ligth-prim);
             opacity: 60%;
-        }      
+
+            &:hover{
+                opacity: 100%;
+            }
+        }       
     }
 
 </style>

@@ -29,7 +29,7 @@ export default {
     }
   },
 
-  created(){
+    async created(){
     // url photos
     const url_photos = store.base_api_url + store.photos_endpoint
     console.log(url_photos);
@@ -43,9 +43,9 @@ export default {
     console.log(url_evidences);
 
     // calls api
-    store.callApiPhotos(url_photos); // chiamata api photos
+    await store.callApiPhotos(url_photos); // chiamata api photos
     store.callApiCategories(url_categories)
-    store.callApiEvidences(url_evidences)
+    store.filterEvidences(url_evidences)
     
     }
     
@@ -60,7 +60,7 @@ export default {
             <section class="py-1"> <!----Al click en categories, true-->
                 <FiltersButtons></FiltersButtons>
                 
-                <div v-if="store.show && store.results_evidences">
+                <div v-if="store.show && store.results_evidences"> <!---->
                     <h3>Foto in evidenza</h3>
                     <div class="row row-cols-sm-2 row-cols-md-3 g-4"> <!--row-cols-1  -->
                         <div v-for="photo in store.evidences">
@@ -89,8 +89,6 @@ export default {
                         </div>
                     </div>
 
-                    <LoadingIcon v-else></LoadingIcon>
-
                     <nav aria-label="Page navigation" class="mt-4" v-if="store.photos">
                         <ul class="pagination" >
                             <li class="page-item " :class="{'disabled' : !link.url, 'active': link.active}" v-for="link in store.photos.links">
@@ -103,6 +101,7 @@ export default {
                     <div class="message" v-else> 
                         Non ci sono foto da vedere
                     </div>
+                    <LoadingIcon v-else></LoadingIcon>
                 </div>
             </section>
         </div>
@@ -123,7 +122,7 @@ main {
     height: 1000px;
     background-size: cover;
     background-repeat: no-repeat;
-    /*margin-top: -180px; in brackpoints*/
+    /*margin-top: -180px; in breackpoints*/
 }
 
 .pag {

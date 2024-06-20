@@ -35,6 +35,9 @@ export default {
     .select-filtra {
         background-color: var(--ligth-prim);
         opacity: 60%;
+        &:hover{
+                opacity: 100%;
+            }
     }
 
     .btn-filtra-select{
