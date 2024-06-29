@@ -18,11 +18,19 @@ export default {
     methods: {
         search(){ //(data)
             store.loading = true;
+            store.search = true;
+            store.results_categories = true; // quando "search" diventa vero anche "results_categories" deve diventare vero, perche se non sono entrambi vere allora non si vede il link "tutte le foto"
+
             //console.log('search_text', data);
             //const [search_text] = data;
+
             const url_search = store.base_api_url + store.photos_endpoint + `?search=${this.search_text}`
             console.log(url_search); // console: http://127.0.0.1:8000/api/posts?search=sfrefe 
             store.callApiPhotos(url_search)
+
+            /* ↓↓↓ servono per gestire il cambio true e false per la visualizzazione in pagina del link "Tutte le foto" */
+            //console.log('search-HEADER', store.search); 
+            //console.log('results_categories-HEADER', store.search);
         },
     }
 }

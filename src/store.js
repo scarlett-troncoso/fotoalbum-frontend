@@ -6,22 +6,24 @@ export const store = reactive({
         base_api_url: 'http://127.0.0.1:8000', //creo una variabile con il link(base) della mia API in questo caso del l'api creata nell file(laravel-boolpress-live-73)
         photos_endpoint: '/api/photos', // URL api photos,
         categories_endpoint: '/api/categories', // URL api categories,
-        evidences_query: '?in_evidence',
+        //evidences_query: '?in_evidence',
         photos: '',
         categories: '',
         evidences: [],
-        search_results: '',
+        //search_results: '',
+        searchResults: ' ',
         results_evidences: false,
         results_categories: false,
         show: false,
         loading: false,
+        search: false,
     
    
       async callApiPhotos(url){
         await axios.get(url)
         .then(resp => {
           this.loading = false;
-          console.log(resp); 
+         // console.log(resp); 
           this.photos = resp.data.results
         console.log(this.photos); //direttamente { >data {oggeti del'api}}
           })
@@ -44,7 +46,7 @@ export const store = reactive({
       },
       
       filterEvidences(){
-         console.log(this.photos.data);
+         //console.log(this.photos.data);
          this.evidences = this.photos.data.filter((photo)=>photo.in_evidence == 1 );
          console.log(this.evidences);
       },
@@ -54,7 +56,7 @@ export const store = reactive({
         .then(resp => {
           this.loading = false;
           
-        //console.log(resp); 
+        console.log(resp); 
         this.searchResults = resp.data.results
         console.log(this.searchResults); //direttamente { >data {oggeti del'api}}
           })

@@ -46,6 +46,10 @@ export default {
     await store.callApiPhotos(url_photos); // chiamata api photos
     store.callApiCategories(url_categories)
     store.filterEvidences(url_evidences)
+
+    /* ↓↓↓ Per gestire il cambio true/false per la visualizzazione in pagina del link "Tutte le foto" */
+    console.log('search-partenza', store.search) // 
+    console.log('resultsCategories-partenza', store.results_categories)
     
     }
     
