@@ -31,6 +31,8 @@ export default {
             /* ↓↓↓ servono per gestire il cambio true e false per la visualizzazione in pagina del link "Tutte le foto" */
             //console.log('search-HEADER', store.search); 
             //console.log('results_categories-HEADER', store.search);
+
+            this.search_text = ' ';
         },
     }
 }

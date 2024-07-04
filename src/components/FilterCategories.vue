@@ -6,14 +6,23 @@ export default {
         loading: Boolean
     },
 
-    emits: ['filter'], 
+    emits: ['filter'],
 
     data() {
         return{
             filter_value: '',
             results_categories: true
         }
-    }
+    },
+
+    methods: {
+    handleSubmit() {
+      // Emetti un evento con il valore della query di ricerca
+      this.$emit('filter', this.filter_value, this.results_categories);
+
+      // Resetta il campo di input
+      this.filter_value = '';
+    } }
 }
 </script>
 
@@ -25,10 +34,11 @@ export default {
             <option v-for="category in categories" :value="category.id" > {{category.name}}</option>
             <option value="senza">Senza Categoria</option>
         </select>
-        <button class="btn btn-outline-secondary btn-filtra-select" type="button" @click="$emit('filter', [filter_value, results_categories])" :disabled="loading"> 
+        <button class="btn btn-outline-secondary btn-filtra-select" type="button" @click="handleSubmit" :disabled="loading" href="#bottomSection" data-bs-toggle="scroll"> 
             {{ loading ? 'Cercando...' : 'Filtra' }}
         </button>
     </div>
+    <!--$emit('filter', [filter_value, results_categories])-->
 </template>
 
 <style scoped>

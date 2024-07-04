@@ -64,8 +64,8 @@ export default {
             <section class="py-1"> <!----Al click en categories, true-->
                 <FiltersButtons></FiltersButtons>
                 
-                <div v-if="store.show && store.results_evidences"> <!---->
-                    <h3>Foto in evidenza</h3>
+                <div class="py-5" v-if="store.show && store.results_evidences"> <!---->
+                    <h3 class="m-auto light-prim mb-3">Foto in evidenza: </h3>
                     <div class="row row-cols-sm-2 row-cols-md-3 g-4"> <!--row-cols-1  -->
                         <div v-for="photo in store.evidences">
                             <div class="col photoCard cont-cards">
@@ -80,14 +80,13 @@ export default {
 
                 <div class="container" v-if="store.photos, !store.show">
 
-
                     <h3 class="m-auto light-prim mb-3">Foto:</h3> <!-- {{ this.filter ? 'Foto:categoria Nome' : 'Explora tutte le foto' }} -->
                     
                     <div class="message" v-if="store.photos.data <= 0"> 
                         Non ci sono foto da vedere
                     </div>
 
-                    <div class="row row-cols-sm-2 row-cols-md-3 g-4" v-if="!store.loading"> <!-- row-cols-1   -->
+                    <div id="bottomSection" class="row row-cols-sm-2 row-cols-md-3 g-4" v-if="!store.loading"> <!-- row-cols-1   -->
                         <div  v-for="photo in store.photos.data">
                             <CardPhoto :photo="photo" :base_api_url="store.base_api_url"></CardPhoto> 
                         </div>
