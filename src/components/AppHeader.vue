@@ -44,7 +44,7 @@ export default {
         <nav class="navbar navbar-expand-lg navbar-header">
             <div class="container-fluid m-2">
                 <div class="mx-3 navbar-brand logo-fotoAlbum">
-                    <h2 class="display-5 fw-bold">FotoAlbum</h2>
+                    <h1 class="display-5 fw-bold">FotoAlbum</h1>
                 </div>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>

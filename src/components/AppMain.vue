@@ -130,6 +130,8 @@ main {
 
 .pag {
     background-color: var(--ligth-prim);
+    color: var(--green-dark);
+    font-weight: 500;
 }
 
 </style>

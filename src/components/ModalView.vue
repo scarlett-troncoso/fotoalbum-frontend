@@ -9,7 +9,7 @@ export default {
 </script>
 
 <template>
-    <div class=""> <!---Modal per visualizzazione di un singola photo-->
+    <div class="cont-modal"> <!---Modal per visualizzazione di un singola photo-->
         <!-- Modal Body -->
         <div class="modal fade" :id="`photo-${photo.id}`" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" role="dialog" :aria-labelledby="`modal-title-${photo.id}`" aria-hidden="true">
             <div class="modal-dialog modal-xl modal-dialog-scrollable modal-show" > <!--modal-dialog-centered  role="document"   -->
@@ -33,24 +33,33 @@ export default {
                             </div>
                         </div>
     
-                        <div class="w-50 modal-tex">
-                            <h5 class="py-1">{{ photo.title }}</h5>
-
-                            <div class="py-1 text-category">
-                                <strong>Categoria: {{ photo.category ? photo.category.name : 'Senza Categoria' }}</strong>
+                        <div class="w-50 modal-text px-5">
+                            <h5 class="green-dark">{{ photo.title }}</h5>
+                        
+                            <div class="py-4 f-merienda ml-1">
+                                <p> " {{photo.description}} "</p>
                             </div>
 
-                            <div class="in_evidence py-1" v-if="photo.in_evidence">
-                                <i class="fa-solid fa-circle-check orange"></i> Foto in evidenza
-                            </div>
+                            <div class="d-flex w-100 justify-content-between">
+                                <!--<div >
+                                    <strong></strong>  {{ photo.category ? photo.category.name : 'Senza Categoria' }}
+                                </div>-->
 
-                            <div class="py-1">
-                                <i class="fa-solid fa-user"></i> <span> {{ photo.user? photo.user.name : '' }} </span>  
-                            </div>
+                                <div class="px-1 green-dark d-flex align-items-center cont-user cont-border">
+                                    <i class="fas fa-circle-user fa-lg"></i> 
+                                    <h5 class="fw-bold px-1"> {{ photo.user? photo.user.name : '' }} </h5>  
+                                </div>
 
-                            <div class="py-1">
-                                <p>{{photo.description}}</p>
-                            </div>
+                                <div class="cont-categ">
+                                    <!--<span class="p-1 text-category">Categoria: </span>-->
+                                    <h5 v-if="photo.category"><span class="badge bg-categ-green" >{{ photo.category.name}}</span></h5>
+                                    <span v-else> Senza Categoria</span>
+                                </div>
+
+                                <div class="in_evidence px-1 fw-bold orange cont-border" v-if="photo.in_evidence">
+                                    <i class="fa-solid fa-circle-check fa-lg"></i> In evidenza
+                                </div>
+                        </div>
                             
                         </div>
                     </div>
@@ -70,14 +79,38 @@ export default {
     color: var(--ligth-prim);
 }
 .mod-body{
-    background-color: var(ligth-prim);
+    background-color: var(--ligth-prim);
 }
-.modal-tex{
-    padding-left: 1rem;
-
+.modal-text{
     >.text-category {
         color: var(--primary-green);
+        line-height: 2rem;
     }
+}
+.cont-border{
+    border-radius: 7px;
+    height: 1.7rem;
+
+    > i {
+        padding-left: 4px;
+        line-height: 1.7rem;
+    }
+}
+.cont-user {
+    border: solid var(--primary-green) 1px;
+  
+    > h5{
+        font-size: 1.1rem;
+        margin: 0;
+    }
+}
+
+.cont-categ {
+    line-height: 2rem;
+}
+
+.in_evidence{
+    border: solid var(--check-color) 1px;
 }
 
 .cont-img-modal{

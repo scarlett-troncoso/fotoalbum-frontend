@@ -13,34 +13,10 @@
     --salmon: #ffac86;
     --primary-green: #5d7c81;
     --green-dark: #3a5054;
+    --categ-green: #386246;
     --dark-dark: #424241;
     --logo-dark: #032025;
   }
-
-.light-prim{
-    color: var(--ligth-prim);
-}
-
-.orange {
-    color: var(--check-color);
-}
-
-.green {
-    color: var(--text-green)
-}
-
-.sec-grey {
-    color: var(--secondary-grey)
-}
-
-.prim-green {
-    color: var(--primary-green)
-}
-
-.categ {
-    font-size: smaller;
-    margin-bottom: 0;
-}
 
 body {
     background-color: rgb(42, 39, 39);
@@ -52,14 +28,50 @@ body {
     margin: auto;
 }
 
+/* Utilities */
+.f-merienda {
+    font-family: 'Merienda', sans-serif;
+}
+.col-12 {
+    width: 100%;
+}
+.light-prim{
+    color: var(--ligth-prim);
+}
+.orange {
+    color: var(--check-color);
+}
+.green-dark {
+    color: var(--green-dark)
+}
+.sec-grey {
+    color: var(--secondary-grey)
+}
+.prim-green {
+    color: var(--primary-green)
+}
+.bg-categ-green {
+    background-color: var(--categ-green);
+}
+
+/* end Utilities */
+
+.categ {
+    font-size: smaller;
+    margin-bottom: 0;
+}
+
 .row {
     display: flex;
     flex-wrap: wrap;
 }
 
-.col-12 {
-    width: 100%;
+.logo-fotoAlbum {
+    color: var(--logo-dark);
+    font-family: 'Patua One', serif;
+    font-weight: 400;
 }
+
 
 /*[class^="col-"] {
     padding: 10px;

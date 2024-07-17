@@ -24,19 +24,19 @@ export default {
             </div>
         </div>
 
-        <div class="card-body card-foto-body">
+        <div class="card-body card-foto-body green-dark">
             <div class="info-card">
                 <h5 class="photo-title" v-if="photo.title.length<=34">{{ photo.title }}</h5>
                 <h5 class="photo-title" v-else="photo.title.length>34">{{ photo.title.substring(0, 35) + "..." }}</h5>
                 <div class="d-flex justify-content-between">
                     <div>
-                        <span class="badge text-bg-secondary" v-if="photo.category">{{ photo.category.name}}</span>
+                        <span class="badge bg-categ-green" v-if="photo.category">{{ photo.category.name}}</span>
                     </div>
 
                     <div class="btn-modal">
                         <!-- Modal trigger button -->
                         <button type="button" class="btn btn-sm" data-bs-toggle="modal" :data-bs-target="`#photo-${photo.id}`">
-                            <i class="fa-solid fa-eye"></i> <!--Vedi Foto-->
+                            <i class="fa-solid fa-eye green-dark fa-lg"></i> <!--Vedi Foto-->
                         </button>
                     </div>
                 </div>
@@ -54,8 +54,8 @@ export default {
 .evidence {
     /*padding-bottom: 5px;*/
     position: absolute;
-    right: 5px;
-    bottom: 5px;
+    right: 8px;
+    bottom: 10px;
 
     >.ev_text {
     font-size: small;
@@ -71,6 +71,7 @@ export default {
 .cards-photos{
     /*height: 323px; in breack-points*/
     position: relative;
+    background-color: var(--ligth-prim);
 
     >.card-foto-body {
         padding: 1px 2px 2px 4px ;
@@ -83,6 +84,7 @@ export default {
 
 .photo-title{
     width: 85%;
+    padding-top: 3px;
     /*font-size: medium;
     line-height: 1rem; in breack-points*/
 }
