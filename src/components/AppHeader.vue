@@ -54,9 +54,6 @@ export default {
                         <li class="nav-item">
                             <a class="nav-link" href="#">Login</a> <!--link-dark link-opacity-25-hover link-underline-opacity-0 link-underline-opacity-25-hover"-->
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Other</a>
-                        </li>
                     </ul>
                     
                 </div>
