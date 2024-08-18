@@ -3,65 +3,69 @@ import axios from 'axios';
 
 export const store = reactive({
   
-        base_api_url: 'http://127.0.0.1:8000', //creo una variabile con il link(base) della mia API in questo caso del l'api creata nell file(laravel-boolpress-live-73)
-        photos_endpoint: '/api/photos', // URL api photos,
-        categories_endpoint: '/api/categories', // URL api categories,
-        //evidences_query: '?in_evidence',
-        photos: '',
-        categories: '',
+        base_api_url: 'http://127.0.0.1:8000', //URL base
+        photos_endpoint: '/api/photos', // URL photos,
+        categories_endpoint: '/api/categories', // URL categories,
+        photos: [],
+        categories: [],
         evidences: [],
-        //search_results: '',
-        searchResults: ' ',
+        searchResults: [],
         results_evidences: false,
         results_categories: false,
         show: false,
         loading: false,
         search: false,
     
-   
-      async callApiPhotos(url){
-        await axios.get(url)
-        .then(resp => {
+
+      // Funzione per chiamare l'API delle foto
+      async callApiPhotos(url){ // 
+        this.loading = true;
+        await axios.get(url) //  
+        .then(response => {
           this.loading = false;
          // console.log(resp); 
-          this.photos = resp.data.results
-        console.log(this.photos); //direttamente { >data {oggeti del'api}}
+          this.photos = response.data.results
+        console.log(this.photos); //accesso a: { >data {oggetti del'api}}
           })
-        .catch(err => {
-        console.error(err);
-          })
-      },
-  
-      callApiCategories(url){
-        axios.get(url)
-        .then(resp => {
-          this.loading = false;
-        //console.log(resp); 
-        this.categories = resp.data
-        console.log(this.categories);
-          })
-        .catch(err => {
-        console.error(err);
+        .catch(error => {
+        console.error("Errore durante il recupero delle foto:", error);
           })
       },
       
+      // Funzione per chiamare l'API delle categorie
+      callApiCategories(url){
+        this.loading = true;
+        axios.get(url)
+        .then(response => {
+          this.loading = false;
+        //console.log(resp); 
+        this.categories = response.data
+        console.log(this.categories);
+          })
+        .catch(error => {
+        console.error("Errore durante il recupero delle categorie:", error);
+          })
+      },
+
+      // Funzione per effettuare una ricerca
+      callApiSearch(url){
+        this.loading = true;
+        axios.get(url)
+        .then(response => {
+          this.loading = false;
+        console.log(response); 
+        this.searchResults = response.data.results
+        console.log(this.searchResults); //accesso a: { >data {oggetti del'api}}
+          })
+        .catch(error => {
+        console.error("Errore durante la ricerca delle foto:", error);
+          })
+      },
+      
+      // Funzione per filtrare le foto in evidenza
       filterEvidences(){
          //console.log(this.photos.data);
          this.evidences = this.photos.data.filter((photo)=>photo.in_evidence == 1 );
          console.log(this.evidences);
-      },
-
-      callApiSearch(url){
-        axios.get(url)
-        .then(resp => {
-          this.loading = false;
-          
-        console.log(resp); 
-        this.searchResults = resp.data.results
-        console.log(this.searchResults); //direttamente { >data {oggeti del'api}}
-          })
-        .catch(err => {
-        console.error(err);
-          })
       }
     })
