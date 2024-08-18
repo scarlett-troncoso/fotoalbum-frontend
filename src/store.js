@@ -4,8 +4,8 @@ import axios from 'axios';
 export const store = reactive({
   
         base_api_url: 'http://127.0.0.1:8000', //URL base
-        photos_endpoint: '/api/photos', // URL photos,
-        categories_endpoint: '/api/categories', // URL categories,
+        photos_endpoint: '/api/photos.com', // URL photos,
+        categories_endpoint: '/api/categories.com', // URL categories,
         photos: [],
         categories: [],
         evidences: [],
